@@ -1,5 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using PhoneNumber2;
 
 namespace TregisterPerson
@@ -21,9 +19,11 @@ namespace TregisterPerson
 
         [TestMethod]
 
-        public void TestMath()
+        public void TestMatch()
         {
 
+            /// REVIEW. a.boikov. 2024/10/19. Отдельные переменные firstName1, lastName1 и т.д. не нужны
+            /// Данные сразу заполнять в рамках конструкторов объектов
             string firstName1 = "Иван";
             string lastName1 = "Наумов";
             string phoneNumber1 = "+79161234567";
@@ -55,6 +55,9 @@ namespace TregisterPerson
             RegisteredPerson person3 = new RegisteredPerson(firstName3, lastName3, phoneNumber3, address3, registrationDate3);
             repository.AddPerson(person3);
 
+            /// REVIEW. a.boikov. 2024/10/19. Функция должна быть от одного аргумента,
+            /// который является условием поиска (например, поиск по фамилии: аргумент string family)
+            /// Вовзможные сценарии: нет людей с такой фамилией, один человек, несколько
             RegisteredPerson foundPerson1 = repository.FindPerson(firstName1, lastName1, phoneNumber1, address1, registrationDate1);
             Assert.IsNotNull(foundPerson1);
             Assert.AreEqual(firstName1, foundPerson1.FirstName);
